@@ -53,20 +53,39 @@
             <span> <a href="mailto:swampsidechats@gmail.com">                          <span class="fas fa-envelope  fa-lg"> </span> </a> email     </span>
             <span> <a href="https://www.paypal.me/swampsidechats">                     <span class="fab fa-paypal    fa-lg"> </span> </a> paypal    </span>
         </nav>
-
-         <!--<section id="soundcloud">
-            <iframe width="100%" height=20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&start_track=0"></iframe>
-            <iframe width="100%" height=20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&start_track=1"></iframe>
-            <iframe width="100%" height=20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&start_track=2"></iframe>
-        </section>-->
            
-        <iframe width="900" height=405" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false"></iframe>
-        <img id="gator" src="/gator.png">
+        <section id='sc-container'>
+            <!-- iframe injected here -->
+            <img id="gator" src="/gator.png">
+        </section>
 
         <footer>
             <span> <a href="http://emancipation.network/"> <span class="fas fa-flag fa-lg"> </span> </a> emancipation.network </span>
         </footer>
         
     </div>
+
+    <script>
+        const scFull   = '<iframe id="sc" width="900" height=405" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false"></iframe>';
+        const scMobile = `<div id="sc">
+            <iframe width="100%" height=20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&start_track=0"></iframe>
+            <iframe width="100%" height=20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&start_track=1"></iframe>
+            <iframe width="100%" height=20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/284060811&color=000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&start_track=2"></iframe>
+        </div>`
+
+        function isMobile(mediaWidth) {
+            if (mediaWidth.matches) {
+                let sc; if (sc = document.getElementById('sc') ) { sc.remove() }
+                document.getElementById('sc-container').insertAdjacentHTML('afterbegin', scMobile);
+            } else {
+                let sc; if (sc = document.getElementById('sc') ) { sc.remove() }
+                document.getElementById('sc-container').insertAdjacentHTML('afterbegin', scFull);
+            }
+        }
+        let mediaWidth = window.matchMedia('(max-width: 1020px)');
+
+        isMobile(mediaWidth);
+        mediaWidth.addListener(isMobile);
+    </script>
     
 </body>

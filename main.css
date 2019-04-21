@@ -25,6 +25,8 @@ a {
 
     flex-direction: column;
     align-items: center;
+
+    overflow-x: hidden;
 }
 
 header {
@@ -34,7 +36,7 @@ header {
 }
 
 header h1 {
-    font-weight: 800;
+    /*font-weight: 800;*/
     font-size: 5rem;
 
     font-family: "swampside";
@@ -57,26 +59,53 @@ nav {
     font-size: 16px;
     
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   
     padding-left : 20px;
     padding-right: 20px;
     margin-bottom: 50px;
 }
 
-/*#soundcloud {
-    width: 500px;
-    background-color: #ffffff;
-    padding: 5px;
-}*/
-
 #gator {
     position: relative;
-    bottom: 25%;
-    right: -15%;
+    display: block;
+
+    bottom: 35%;
+    left: 60%;
+
+    margin-bottom: -25%;
 }
 
-footer {
-    position: relative;
-    bottom: 25%;
+@media(max-width: 1020px) {
+    header h1 {
+        font-size: 8vw;
+    }
+
+    nav {
+        width: 100%;
+        flex-flow: wrap-reverse;
+    }
+
+    #gator {
+        float: right;
+        bottom: 0; left: 0;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 1.5%;
+    }
+}
+
+@media(max-width: 414px) {
+    #gator { width : 100vw; }
+}
+
+@media(max-height: 800px) {
+    #sc-container { height: 100%; }
+    #gator        { bottom: -10%; }
+    footer {
+        width: 100%;
+        float: left;
+    }
 }
